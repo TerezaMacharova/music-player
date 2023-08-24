@@ -1,6 +1,6 @@
 ﻿namespace music_player
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.buttonBrowse = new System.Windows.Forms.Button();
+            this.buttonPlay = new System.Windows.Forms.Button();
+            this.buttonNext = new System.Windows.Forms.Button();
+            this.buttonPrevious = new System.Windows.Forms.Button();
+            this.buttonStop = new System.Windows.Forms.Button();
+            this.buttonPause = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.playlist1 = new System.Windows.Forms.ListBox();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
@@ -42,69 +42,70 @@
             this.labelElapsedTime = new System.Windows.Forms.Label();
             this.labelTotalTime = new System.Windows.Forms.Label();
             this.LabelArtistSong = new System.Windows.Forms.Label();
+            this.buttonRemove = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // buttonBrowse
             // 
-            this.button1.BackColor = System.Drawing.Color.LightCoral;
-            this.button1.Location = new System.Drawing.Point(27, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(140, 40);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "browse";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonBrowse.BackColor = System.Drawing.Color.LightCoral;
+            this.buttonBrowse.Location = new System.Drawing.Point(27, 12);
+            this.buttonBrowse.Name = "buttonBrowse";
+            this.buttonBrowse.Size = new System.Drawing.Size(140, 40);
+            this.buttonBrowse.TabIndex = 0;
+            this.buttonBrowse.Text = "browse";
+            this.buttonBrowse.UseVisualStyleBackColor = false;
+            this.buttonBrowse.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // buttonPlay
             // 
-            this.button2.Location = new System.Drawing.Point(485, 352);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "play";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonPlay.Location = new System.Drawing.Point(485, 352);
+            this.buttonPlay.Name = "buttonPlay";
+            this.buttonPlay.Size = new System.Drawing.Size(75, 23);
+            this.buttonPlay.TabIndex = 1;
+            this.buttonPlay.Text = "play";
+            this.buttonPlay.UseVisualStyleBackColor = true;
+            this.buttonPlay.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // buttonNext
             // 
-            this.button3.Location = new System.Drawing.Point(647, 352);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "next";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.buttonNext.Location = new System.Drawing.Point(647, 352);
+            this.buttonNext.Name = "buttonNext";
+            this.buttonNext.Size = new System.Drawing.Size(75, 23);
+            this.buttonNext.TabIndex = 2;
+            this.buttonNext.Text = "next";
+            this.buttonNext.UseVisualStyleBackColor = true;
+            this.buttonNext.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // buttonPrevious
             // 
-            this.button4.Location = new System.Drawing.Point(323, 352);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "previous";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.buttonPrevious.Location = new System.Drawing.Point(323, 352);
+            this.buttonPrevious.Name = "buttonPrevious";
+            this.buttonPrevious.Size = new System.Drawing.Size(75, 23);
+            this.buttonPrevious.TabIndex = 3;
+            this.buttonPrevious.Text = "previous";
+            this.buttonPrevious.UseVisualStyleBackColor = true;
+            this.buttonPrevious.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button5
+            // buttonStop
             // 
-            this.button5.Location = new System.Drawing.Point(404, 352);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "stop";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.buttonStop.Location = new System.Drawing.Point(404, 352);
+            this.buttonStop.Name = "buttonStop";
+            this.buttonStop.Size = new System.Drawing.Size(75, 23);
+            this.buttonStop.TabIndex = 4;
+            this.buttonStop.Text = "stop";
+            this.buttonStop.UseVisualStyleBackColor = true;
+            this.buttonStop.Click += new System.EventHandler(this.button5_Click);
             // 
-            // button6
+            // buttonPause
             // 
-            this.button6.Location = new System.Drawing.Point(566, 352);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "pause";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.buttonPause.Location = new System.Drawing.Point(566, 352);
+            this.buttonPause.Name = "buttonPause";
+            this.buttonPause.Size = new System.Drawing.Size(75, 23);
+            this.buttonPause.TabIndex = 5;
+            this.buttonPause.Text = "pause";
+            this.buttonPause.UseVisualStyleBackColor = true;
+            this.buttonPause.Click += new System.EventHandler(this.button6_Click);
             // 
             // openFileDialog1
             // 
@@ -168,26 +169,37 @@
             this.LabelArtistSong.Text = "THIS IS WHATS CURRETNLY PLAYING";
             this.LabelArtistSong.Click += new System.EventHandler(this.label1_Click_1);
             // 
-            // Form1
+            // buttonRemove
+            // 
+            this.buttonRemove.Location = new System.Drawing.Point(91, 429);
+            this.buttonRemove.Name = "buttonRemove";
+            this.buttonRemove.Size = new System.Drawing.Size(138, 37);
+            this.buttonRemove.TabIndex = 13;
+            this.buttonRemove.Text = "remove song";
+            this.buttonRemove.UseVisualStyleBackColor = true;
+            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click_1);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MistyRose;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(804, 478);
+            this.Controls.Add(this.buttonRemove);
             this.Controls.Add(this.LabelArtistSong);
             this.Controls.Add(this.labelTotalTime);
             this.Controls.Add(this.labelElapsedTime);
             this.Controls.Add(this.trackBar);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.playlist1);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonPause);
+            this.Controls.Add(this.buttonStop);
+            this.Controls.Add(this.buttonPrevious);
+            this.Controls.Add(this.buttonNext);
+            this.Controls.Add(this.buttonPlay);
+            this.Controls.Add(this.buttonBrowse);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "lalala this plays music";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar)).EndInit();
@@ -198,12 +210,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button buttonBrowse;
+        private System.Windows.Forms.Button buttonPlay;
+        private System.Windows.Forms.Button buttonNext;
+        private System.Windows.Forms.Button buttonPrevious;
+        private System.Windows.Forms.Button buttonStop;
+        private System.Windows.Forms.Button buttonPause;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ListBox playlist1;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
@@ -211,6 +223,7 @@
         private System.Windows.Forms.Label labelElapsedTime;
         private System.Windows.Forms.Label labelTotalTime;
         private System.Windows.Forms.Label LabelArtistSong;
+        private System.Windows.Forms.Button buttonRemove;
     }
 }
 
