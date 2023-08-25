@@ -83,11 +83,21 @@ namespace music_player
             LoadPlaylist(); 
             musicPlayer = new MusicPlayer(playlist);
             RefreshPlaylist();
+
+            txtArtist.Visible = false;
+            txtTitle.Visible = false;
+            buttonSave.Visible = false;
+            buttonCancel.Visible = false;
             
             musicPlayer.TrackBarUpdateEvent += HandleTrackBarUpdate;
             musicPlayer.SongStoppedEvent += MusicPlayer_SongStopped;
             musicPlayer.SongStartedEvent += MusicPlayer_SongStarted;
             playlist.CurrentSongRemoved += Playlist_CurrentSongRemoved;
+
+            playlist1.DoubleClick += playlist1_DoubleClick;
+            buttonSave.Click += buttonSave_Click;
+            buttonCancel.Click += buttonCancel_Click;
+
         }
 
         private void CenterContent()
@@ -339,6 +349,54 @@ namespace music_player
             musicPlayer.Play();
         }
 
+        private void playlist1_DoubleClick(object sender, EventArgs e)
+        {
+            if (playlist1.SelectedIndex >= 0)
+            {
+                Song selectedSong = (Song)playlist1.SelectedItem;
+
+                txtArtist.Text = selectedSong.Artist;
+                txtTitle.Text = selectedSong.Title;
+
+                txtArtist.Visible = true;
+                txtTitle.Visible = true;
+                buttonSave.Visible = true;
+                buttonCancel.Visible = true;
+            }
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            txtArtist.Visible = false;
+            txtTitle.Visible = false;
+            buttonSave.Visible = false;
+            buttonCancel.Visible = false;
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            if (playlist1.SelectedIndex >= 0)
+            {
+                Song selectedSong = (Song)playlist1.SelectedItem;
+                selectedSong.Artist = txtArtist.Text;
+                selectedSong.Title = txtTitle.Text;
+
+                Song currentSong = playlist.GetCurrentSong();  // Assuming this method fetches the current song being played.
+
+                if (currentSong != null && currentSong == selectedSong)
+                {
+                    LabelArtistSong.Text = currentSong.ToString();
+                }
+
+                RefreshPlaylist();
+                SavePlaylist();
+
+                txtArtist.Visible = false;
+                txtTitle.Visible = false;
+                buttonCancel.Visible = false;
+                buttonSave.Visible = false;
+            }
+        }
     }
 
     public class Song //class representing songs

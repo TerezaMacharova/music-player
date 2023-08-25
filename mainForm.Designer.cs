@@ -37,12 +37,15 @@
             this.buttonPause = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.playlist1 = new System.Windows.Forms.ListBox();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.trackBar = new System.Windows.Forms.TrackBar();
             this.labelElapsedTime = new System.Windows.Forms.Label();
             this.labelTotalTime = new System.Windows.Forms.Label();
             this.LabelArtistSong = new System.Windows.Forms.Label();
             this.buttonRemove = new System.Windows.Forms.Button();
+            this.txtArtist = new System.Windows.Forms.TextBox();
+            this.txtTitle = new System.Windows.Forms.TextBox();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -123,14 +126,6 @@
             this.playlist1.TabIndex = 6;
             this.playlist1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(143, 98);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(24, 21);
-            this.checkedListBox1.TabIndex = 7;
-            // 
             // trackBar
             // 
             this.trackBar.Location = new System.Drawing.Point(314, 281);
@@ -179,18 +174,54 @@
             this.buttonRemove.UseVisualStyleBackColor = true;
             this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click_1);
             // 
+            // txtArtist
+            // 
+            this.txtArtist.Location = new System.Drawing.Point(273, 96);
+            this.txtArtist.Name = "txtArtist";
+            this.txtArtist.Size = new System.Drawing.Size(214, 22);
+            this.txtArtist.TabIndex = 14;
+            // 
+            // txtTitle
+            // 
+            this.txtTitle.Location = new System.Drawing.Point(273, 125);
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.Size = new System.Drawing.Size(214, 22);
+            this.txtTitle.TabIndex = 15;
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(300, 153);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(66, 23);
+            this.buttonSave.TabIndex = 16;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Location = new System.Drawing.Point(383, 153);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(66, 23);
+            this.buttonCancel.TabIndex = 17;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MistyRose;
             this.ClientSize = new System.Drawing.Size(804, 478);
+            this.Controls.Add(this.buttonCancel);
+            this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.txtTitle);
+            this.Controls.Add(this.txtArtist);
             this.Controls.Add(this.buttonRemove);
             this.Controls.Add(this.LabelArtistSong);
             this.Controls.Add(this.labelTotalTime);
             this.Controls.Add(this.labelElapsedTime);
             this.Controls.Add(this.trackBar);
-            this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.playlist1);
             this.Controls.Add(this.buttonPause);
             this.Controls.Add(this.buttonStop);
@@ -218,12 +249,15 @@
         private System.Windows.Forms.Button buttonPause;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ListBox playlist1;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.TrackBar trackBar;
         private System.Windows.Forms.Label labelElapsedTime;
         private System.Windows.Forms.Label labelTotalTime;
         private System.Windows.Forms.Label LabelArtistSong;
         private System.Windows.Forms.Button buttonRemove;
+        private System.Windows.Forms.TextBox txtArtist;
+        private System.Windows.Forms.TextBox txtTitle;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonCancel;
     }
 }
 
