@@ -46,15 +46,19 @@
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.buttonSearch = new System.Windows.Forms.Button();
+            this.labelArtist = new System.Windows.Forms.Label();
+            this.labelTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonBrowse
             // 
             this.buttonBrowse.BackColor = System.Drawing.Color.LightCoral;
-            this.buttonBrowse.Location = new System.Drawing.Point(27, 12);
+            this.buttonBrowse.Location = new System.Drawing.Point(24, 23);
             this.buttonBrowse.Name = "buttonBrowse";
-            this.buttonBrowse.Size = new System.Drawing.Size(140, 40);
+            this.buttonBrowse.Size = new System.Drawing.Size(144, 42);
             this.buttonBrowse.TabIndex = 0;
             this.buttonBrowse.Text = "browse";
             this.buttonBrowse.UseVisualStyleBackColor = false;
@@ -62,7 +66,7 @@
             // 
             // buttonPlay
             // 
-            this.buttonPlay.Location = new System.Drawing.Point(485, 352);
+            this.buttonPlay.Location = new System.Drawing.Point(578, 401);
             this.buttonPlay.Name = "buttonPlay";
             this.buttonPlay.Size = new System.Drawing.Size(75, 23);
             this.buttonPlay.TabIndex = 1;
@@ -72,7 +76,7 @@
             // 
             // buttonNext
             // 
-            this.buttonNext.Location = new System.Drawing.Point(647, 352);
+            this.buttonNext.Location = new System.Drawing.Point(773, 401);
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.Size = new System.Drawing.Size(75, 23);
             this.buttonNext.TabIndex = 2;
@@ -82,7 +86,7 @@
             // 
             // buttonPrevious
             // 
-            this.buttonPrevious.Location = new System.Drawing.Point(323, 352);
+            this.buttonPrevious.Location = new System.Drawing.Point(374, 401);
             this.buttonPrevious.Name = "buttonPrevious";
             this.buttonPrevious.Size = new System.Drawing.Size(75, 23);
             this.buttonPrevious.TabIndex = 3;
@@ -92,7 +96,7 @@
             // 
             // buttonStop
             // 
-            this.buttonStop.Location = new System.Drawing.Point(404, 352);
+            this.buttonStop.Location = new System.Drawing.Point(477, 401);
             this.buttonStop.Name = "buttonStop";
             this.buttonStop.Size = new System.Drawing.Size(75, 23);
             this.buttonStop.TabIndex = 4;
@@ -102,7 +106,7 @@
             // 
             // buttonPause
             // 
-            this.buttonPause.Location = new System.Drawing.Point(566, 352);
+            this.buttonPause.Location = new System.Drawing.Point(674, 401);
             this.buttonPause.Name = "buttonPause";
             this.buttonPause.Size = new System.Drawing.Size(75, 23);
             this.buttonPause.TabIndex = 5;
@@ -120,15 +124,15 @@
             this.playlist1.ForeColor = System.Drawing.Color.Black;
             this.playlist1.FormattingEnabled = true;
             this.playlist1.ItemHeight = 16;
-            this.playlist1.Location = new System.Drawing.Point(12, 67);
+            this.playlist1.Location = new System.Drawing.Point(12, 106);
             this.playlist1.Name = "playlist1";
-            this.playlist1.Size = new System.Drawing.Size(227, 356);
+            this.playlist1.Size = new System.Drawing.Size(255, 356);
             this.playlist1.TabIndex = 6;
             this.playlist1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // trackBar
             // 
-            this.trackBar.Location = new System.Drawing.Point(314, 281);
+            this.trackBar.Location = new System.Drawing.Point(404, 348);
             this.trackBar.Name = "trackBar";
             this.trackBar.Size = new System.Drawing.Size(408, 56);
             this.trackBar.TabIndex = 9;
@@ -137,7 +141,7 @@
             // labelElapsedTime
             // 
             this.labelElapsedTime.AutoSize = true;
-            this.labelElapsedTime.Location = new System.Drawing.Point(270, 281);
+            this.labelElapsedTime.Location = new System.Drawing.Point(360, 348);
             this.labelElapsedTime.Name = "labelElapsedTime";
             this.labelElapsedTime.Size = new System.Drawing.Size(38, 16);
             this.labelElapsedTime.TabIndex = 10;
@@ -147,7 +151,7 @@
             // labelTotalTime
             // 
             this.labelTotalTime.AutoSize = true;
-            this.labelTotalTime.Location = new System.Drawing.Point(728, 281);
+            this.labelTotalTime.Location = new System.Drawing.Point(818, 348);
             this.labelTotalTime.Name = "labelTotalTime";
             this.labelTotalTime.Size = new System.Drawing.Size(38, 16);
             this.labelTotalTime.TabIndex = 11;
@@ -157,7 +161,7 @@
             // LabelArtistSong
             // 
             this.LabelArtistSong.AutoSize = true;
-            this.LabelArtistSong.Location = new System.Drawing.Point(401, 237);
+            this.LabelArtistSong.Location = new System.Drawing.Point(487, 302);
             this.LabelArtistSong.Name = "LabelArtistSong";
             this.LabelArtistSong.Size = new System.Drawing.Size(252, 16);
             this.LabelArtistSong.TabIndex = 12;
@@ -166,7 +170,7 @@
             // 
             // buttonRemove
             // 
-            this.buttonRemove.Location = new System.Drawing.Point(91, 429);
+            this.buttonRemove.Location = new System.Drawing.Point(67, 468);
             this.buttonRemove.Name = "buttonRemove";
             this.buttonRemove.Size = new System.Drawing.Size(138, 37);
             this.buttonRemove.TabIndex = 13;
@@ -176,21 +180,21 @@
             // 
             // txtArtist
             // 
-            this.txtArtist.Location = new System.Drawing.Point(273, 96);
+            this.txtArtist.Location = new System.Drawing.Point(338, 120);
             this.txtArtist.Name = "txtArtist";
             this.txtArtist.Size = new System.Drawing.Size(214, 22);
             this.txtArtist.TabIndex = 14;
             // 
             // txtTitle
             // 
-            this.txtTitle.Location = new System.Drawing.Point(273, 125);
+            this.txtTitle.Location = new System.Drawing.Point(338, 148);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(214, 22);
             this.txtTitle.TabIndex = 15;
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(300, 153);
+            this.buttonSave.Location = new System.Drawing.Point(363, 176);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(66, 23);
             this.buttonSave.TabIndex = 16;
@@ -200,19 +204,58 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(383, 153);
+            this.buttonCancel.Location = new System.Drawing.Point(452, 176);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(66, 23);
             this.buttonCancel.TabIndex = 17;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(13, 71);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(180, 22);
+            this.txtSearch.TabIndex = 18;
+            // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Location = new System.Drawing.Point(199, 70);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(68, 23);
+            this.buttonSearch.TabIndex = 19;
+            this.buttonSearch.Text = "Search";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
+            // labelArtist
+            // 
+            this.labelArtist.AutoSize = true;
+            this.labelArtist.Location = new System.Drawing.Point(287, 126);
+            this.labelArtist.Name = "labelArtist";
+            this.labelArtist.Size = new System.Drawing.Size(36, 16);
+            this.labelArtist.TabIndex = 20;
+            this.labelArtist.Text = "Artist";
+            // 
+            // labelTitle
+            // 
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Location = new System.Drawing.Point(290, 151);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(33, 16);
+            this.labelTitle.TabIndex = 21;
+            this.labelTitle.Text = "Title";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MistyRose;
-            this.ClientSize = new System.Drawing.Size(804, 478);
+            this.ClientSize = new System.Drawing.Size(968, 531);
+            this.Controls.Add(this.labelTitle);
+            this.Controls.Add(this.labelArtist);
+            this.Controls.Add(this.buttonSearch);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.txtTitle);
@@ -258,6 +301,10 @@
         private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.Label labelArtist;
+        private System.Windows.Forms.Label labelTitle;
     }
 }
 

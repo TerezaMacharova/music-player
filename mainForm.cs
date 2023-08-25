@@ -48,9 +48,10 @@ namespace music_player
             }
         }
 
-        private void RefreshPlaylist()
+        private void RefreshPlaylist(string query = "")
         {
             playlist1.Items.Clear();
+            var filteredSongs = FilteredSongs(query);
             foreach (var song in playlist.Songs)
             {
                 playlist1.Items.Add(song);
@@ -88,15 +89,18 @@ namespace music_player
             txtTitle.Visible = false;
             buttonSave.Visible = false;
             buttonCancel.Visible = false;
+            labelTitle.Visible = false;
+            labelArtist.Visible = false;
             
             musicPlayer.TrackBarUpdateEvent += HandleTrackBarUpdate;
             musicPlayer.SongStoppedEvent += MusicPlayer_SongStopped;
             musicPlayer.SongStartedEvent += MusicPlayer_SongStarted;
             playlist.CurrentSongRemoved += Playlist_CurrentSongRemoved;
-
+            
             playlist1.DoubleClick += playlist1_DoubleClick;
             buttonSave.Click += buttonSave_Click;
             buttonCancel.Click += buttonCancel_Click;
+            buttonSearch.Click += buttonSearch_Click;
 
         }
 
@@ -362,6 +366,8 @@ namespace music_player
                 txtTitle.Visible = true;
                 buttonSave.Visible = true;
                 buttonCancel.Visible = true;
+                labelArtist.Visible = true; 
+                labelTitle.Visible = true;
             }
         }
 
@@ -371,6 +377,8 @@ namespace music_player
             txtTitle.Visible = false;
             buttonSave.Visible = false;
             buttonCancel.Visible = false;
+            labelArtist.Visible = false;
+            labelTitle.Visible = false;
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -395,7 +403,23 @@ namespace music_player
                 txtTitle.Visible = false;
                 buttonCancel.Visible = false;
                 buttonSave.Visible = false;
+                labelArtist.Visible = false;
+                labelTitle.Visible = false;
             }
+        }
+
+        private List<Song> FilteredSongs (string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+                return playlist.Songs;
+
+            return playlist.Songs.Where(s => s.Title.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0 || s.Artist.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+        }
+
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Button clicked!");
+            RefreshPlaylist(txtSearch.Text);
         }
     }
 
