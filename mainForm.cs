@@ -52,7 +52,7 @@ namespace music_player
         {
             playlist1.Items.Clear();
             var filteredSongs = FilteredSongs(query);
-            foreach (var song in playlist.Songs)
+            foreach (var song in filteredSongs)
             {
                 playlist1.Items.Add(song);
             }
@@ -413,7 +413,11 @@ namespace music_player
             if (string.IsNullOrWhiteSpace(query))
                 return playlist.Songs;
 
-            return playlist.Songs.Where(s => s.Title.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0 || s.Artist.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            return playlist.Songs.Where(s => 
+                (s.Title != null && s.Title.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0 )
+                || 
+                (s.Artist!= null && s.Artist.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0)
+            ).ToList();
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
