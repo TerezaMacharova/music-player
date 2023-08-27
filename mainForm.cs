@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using NAudio.Wave;
 using TagLib;
 using Newtonsoft.Json;
+using System.Drawing;
 
 namespace music_player
 {
@@ -106,8 +107,9 @@ namespace music_player
 
         private void CenterContent()
         {
-            //something to center the content
+            
         }
+    
 
         //event handlers and ui stuff
 
@@ -246,15 +248,6 @@ namespace music_player
                 musicPlayer.Play(selectedSong.FilePath);
 
             }
-        }
-
-        private void UpdateButtonStates()
-        {
-            buttonPlay.Enabled = currentFilePath != null;
-            buttonNext.Enabled = playlist.CurrentSongIndex < playlist.Songs.Count - 1;
-            buttonPrevious.Enabled = playlist.CurrentSongIndex > 0; // Enable previous if there are songs before
-            buttonStop.Enabled = musicPlayer.CurrentState == PlaybackState.Playing; // Enable stop if playing
-            buttonPause.Enabled = musicPlayer.CurrentState == PlaybackState.Playing; // Enable pause if playing
         }
 
         private void trackBar2_Scroll(object sender, EventArgs e)
@@ -424,6 +417,16 @@ namespace music_player
         {
             //MessageBox.Show("Button clicked!");
             RefreshPlaylist(txtSearch.Text);
+        }
+
+        private void txtArtist_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelTitle_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

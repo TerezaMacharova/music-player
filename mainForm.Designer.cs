@@ -55,7 +55,8 @@
             // 
             // buttonBrowse
             // 
-            this.buttonBrowse.BackColor = System.Drawing.Color.LightCoral;
+            this.buttonBrowse.BackColor = System.Drawing.Color.White;
+            this.buttonBrowse.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonBrowse.Location = new System.Drawing.Point(24, 23);
             this.buttonBrowse.Name = "buttonBrowse";
             this.buttonBrowse.Size = new System.Drawing.Size(144, 42);
@@ -66,9 +67,10 @@
             // 
             // buttonPlay
             // 
-            this.buttonPlay.Location = new System.Drawing.Point(578, 401);
+            this.buttonPlay.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonPlay.Location = new System.Drawing.Point(655, 401);
             this.buttonPlay.Name = "buttonPlay";
-            this.buttonPlay.Size = new System.Drawing.Size(75, 23);
+            this.buttonPlay.Size = new System.Drawing.Size(75, 34);
             this.buttonPlay.TabIndex = 1;
             this.buttonPlay.Text = "play";
             this.buttonPlay.UseVisualStyleBackColor = true;
@@ -76,9 +78,10 @@
             // 
             // buttonNext
             // 
-            this.buttonNext.Location = new System.Drawing.Point(773, 401);
+            this.buttonNext.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonNext.Location = new System.Drawing.Point(817, 401);
             this.buttonNext.Name = "buttonNext";
-            this.buttonNext.Size = new System.Drawing.Size(75, 23);
+            this.buttonNext.Size = new System.Drawing.Size(75, 34);
             this.buttonNext.TabIndex = 2;
             this.buttonNext.Text = "next";
             this.buttonNext.UseVisualStyleBackColor = true;
@@ -86,9 +89,10 @@
             // 
             // buttonPrevious
             // 
-            this.buttonPrevious.Location = new System.Drawing.Point(374, 401);
+            this.buttonPrevious.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonPrevious.Location = new System.Drawing.Point(486, 401);
             this.buttonPrevious.Name = "buttonPrevious";
-            this.buttonPrevious.Size = new System.Drawing.Size(75, 23);
+            this.buttonPrevious.Size = new System.Drawing.Size(82, 34);
             this.buttonPrevious.TabIndex = 3;
             this.buttonPrevious.Text = "previous";
             this.buttonPrevious.UseVisualStyleBackColor = true;
@@ -96,9 +100,10 @@
             // 
             // buttonStop
             // 
-            this.buttonStop.Location = new System.Drawing.Point(477, 401);
+            this.buttonStop.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonStop.Location = new System.Drawing.Point(574, 401);
             this.buttonStop.Name = "buttonStop";
-            this.buttonStop.Size = new System.Drawing.Size(75, 23);
+            this.buttonStop.Size = new System.Drawing.Size(75, 34);
             this.buttonStop.TabIndex = 4;
             this.buttonStop.Text = "stop";
             this.buttonStop.UseVisualStyleBackColor = true;
@@ -106,9 +111,10 @@
             // 
             // buttonPause
             // 
-            this.buttonPause.Location = new System.Drawing.Point(674, 401);
+            this.buttonPause.Font = new System.Drawing.Font("Cambria", 9F);
+            this.buttonPause.Location = new System.Drawing.Point(736, 401);
             this.buttonPause.Name = "buttonPause";
-            this.buttonPause.Size = new System.Drawing.Size(75, 23);
+            this.buttonPause.Size = new System.Drawing.Size(75, 34);
             this.buttonPause.TabIndex = 5;
             this.buttonPause.Text = "pause";
             this.buttonPause.UseVisualStyleBackColor = true;
@@ -132,18 +138,19 @@
             // 
             // trackBar
             // 
-            this.trackBar.Location = new System.Drawing.Point(404, 348);
+            this.trackBar.Location = new System.Drawing.Point(452, 348);
             this.trackBar.Name = "trackBar";
-            this.trackBar.Size = new System.Drawing.Size(408, 56);
+            this.trackBar.Size = new System.Drawing.Size(465, 56);
             this.trackBar.TabIndex = 9;
             this.trackBar.Scroll += new System.EventHandler(this.trackBar2_Scroll);
             // 
             // labelElapsedTime
             // 
             this.labelElapsedTime.AutoSize = true;
-            this.labelElapsedTime.Location = new System.Drawing.Point(360, 348);
+            this.labelElapsedTime.Font = new System.Drawing.Font("Candara", 10.2F);
+            this.labelElapsedTime.Location = new System.Drawing.Point(396, 348);
             this.labelElapsedTime.Name = "labelElapsedTime";
-            this.labelElapsedTime.Size = new System.Drawing.Size(38, 16);
+            this.labelElapsedTime.Size = new System.Drawing.Size(50, 21);
             this.labelElapsedTime.TabIndex = 10;
             this.labelElapsedTime.Text = "00:00";
             this.labelElapsedTime.Click += new System.EventHandler(this.label1_Click);
@@ -151,9 +158,10 @@
             // labelTotalTime
             // 
             this.labelTotalTime.AutoSize = true;
-            this.labelTotalTime.Location = new System.Drawing.Point(818, 348);
+            this.labelTotalTime.Font = new System.Drawing.Font("Candara", 10.2F);
+            this.labelTotalTime.Location = new System.Drawing.Point(923, 348);
             this.labelTotalTime.Name = "labelTotalTime";
-            this.labelTotalTime.Size = new System.Drawing.Size(38, 16);
+            this.labelTotalTime.Size = new System.Drawing.Size(50, 21);
             this.labelTotalTime.TabIndex = 11;
             this.labelTotalTime.Text = "00:00";
             this.labelTotalTime.Click += new System.EventHandler(this.label2_Click);
@@ -161,15 +169,17 @@
             // LabelArtistSong
             // 
             this.LabelArtistSong.AutoSize = true;
-            this.LabelArtistSong.Location = new System.Drawing.Point(487, 302);
+            this.LabelArtistSong.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.LabelArtistSong.Location = new System.Drawing.Point(507, 312);
             this.LabelArtistSong.Name = "LabelArtistSong";
-            this.LabelArtistSong.Size = new System.Drawing.Size(252, 16);
+            this.LabelArtistSong.Size = new System.Drawing.Size(157, 33);
             this.LabelArtistSong.TabIndex = 12;
-            this.LabelArtistSong.Text = "THIS IS WHATS CURRETNLY PLAYING";
+            this.LabelArtistSong.Text = "artist - song";
             this.LabelArtistSong.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // buttonRemove
             // 
+            this.buttonRemove.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonRemove.Location = new System.Drawing.Point(67, 468);
             this.buttonRemove.Name = "buttonRemove";
             this.buttonRemove.Size = new System.Drawing.Size(138, 37);
@@ -184,6 +194,7 @@
             this.txtArtist.Name = "txtArtist";
             this.txtArtist.Size = new System.Drawing.Size(214, 22);
             this.txtArtist.TabIndex = 14;
+            this.txtArtist.TextChanged += new System.EventHandler(this.txtArtist_TextChanged);
             // 
             // txtTitle
             // 
@@ -194,9 +205,10 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(363, 176);
+            this.buttonSave.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonSave.Location = new System.Drawing.Point(377, 176);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(66, 23);
+            this.buttonSave.Size = new System.Drawing.Size(58, 29);
             this.buttonSave.TabIndex = 16;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -204,9 +216,10 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(452, 176);
+            this.buttonCancel.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonCancel.Location = new System.Drawing.Point(441, 176);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(66, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(63, 29);
             this.buttonCancel.TabIndex = 17;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -220,9 +233,10 @@
             // 
             // buttonSearch
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(199, 70);
+            this.buttonSearch.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonSearch.Location = new System.Drawing.Point(199, 67);
             this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(68, 23);
+            this.buttonSearch.Size = new System.Drawing.Size(77, 30);
             this.buttonSearch.TabIndex = 19;
             this.buttonSearch.Text = "Search";
             this.buttonSearch.UseVisualStyleBackColor = true;
@@ -231,27 +245,30 @@
             // labelArtist
             // 
             this.labelArtist.AutoSize = true;
-            this.labelArtist.Location = new System.Drawing.Point(287, 126);
+            this.labelArtist.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelArtist.Location = new System.Drawing.Point(281, 122);
             this.labelArtist.Name = "labelArtist";
-            this.labelArtist.Size = new System.Drawing.Size(36, 16);
+            this.labelArtist.Size = new System.Drawing.Size(51, 20);
             this.labelArtist.TabIndex = 20;
             this.labelArtist.Text = "Artist";
             // 
             // labelTitle
             // 
             this.labelTitle.AutoSize = true;
-            this.labelTitle.Location = new System.Drawing.Point(290, 151);
+            this.labelTitle.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelTitle.Location = new System.Drawing.Point(289, 148);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(33, 16);
+            this.labelTitle.Size = new System.Drawing.Size(43, 20);
             this.labelTitle.TabIndex = 21;
             this.labelTitle.Text = "Title";
+            this.labelTitle.Click += new System.EventHandler(this.labelTitle_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MistyRose;
-            this.ClientSize = new System.Drawing.Size(968, 531);
+            this.ClientSize = new System.Drawing.Size(1091, 531);
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.labelArtist);
             this.Controls.Add(this.buttonSearch);
