@@ -4,12 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using NAudio.Wave;
-using TagLib;
 using Newtonsoft.Json;
-using System.Drawing;
 
 namespace music_player
 {
+    /// <summary>
+    /// represent the possible playback states 
+    /// </summary>
     public enum PlaybackState
     {
         Stopped,
@@ -17,9 +18,15 @@ namespace music_player
         Paused
     }
 
-    public partial class MainForm : Form //class for the UI
+    /// <summary>
+    /// the main form for the applications UI
+    /// </summary>
+    public partial class MainForm : Form 
     {
-        private struct SongInfo  //to keep track of the current song 
+        /// <summary>
+        /// contains informations about song 
+        /// </summary>
+        private struct SongInfo  
         {
             public string Title;
             public string Artist;
@@ -32,12 +39,18 @@ namespace music_player
         private Timer updateTimer;
         private const string PlaylistFilePath = "playlist.json";
 
+        /// <summary>
+        /// saves the current playlist to a JSON file
+        /// </summary>
         private void SavePlaylist()
         {
             var jsonString = JsonConvert.SerializeObject(playlist.Songs);
             System.IO.File.WriteAllText(PlaylistFilePath, jsonString);
         }
 
+         /// <summary>
+         /// loads the playslist from a JSON file, if it exist
+         /// </summary>
         private void LoadPlaylist()
         {
             if (System.IO.File.Exists(PlaylistFilePath))
@@ -49,6 +62,9 @@ namespace music_player
             }
         }
 
+        /// <summary>
+        /// refreshes the playlist in the UI, can be filtered by query
+        /// </summary>
         private void RefreshPlaylist(string query = "")
         {
             playlist1.Items.Clear();
@@ -59,6 +75,9 @@ namespace music_player
             }
         }
 
+        /// <summary>
+        /// initializes the timer used for updating the UI
+        /// </summary>
         private void InitializeTimer()
         {
             if (updateTimer == null)
@@ -71,11 +90,16 @@ namespace music_player
             updateTimer.Start();
         }
 
+        /// <summary>
+        /// stops updating the timer
+        /// </summary>
         private void StopTimer()
         {
             updateTimer?.Stop();
         }
-
+         /// <summary>
+         /// initializes a new instance of the <see cref="MainForm"/> class
+         /// </summary>
         public MainForm()
         {
             InitializeComponent();
@@ -105,41 +129,47 @@ namespace music_player
 
         }
 
+        /// <summary>
+        /// centers the content on the form 
+        /// </summary>
         private void CenterContent()
         {
-            
+            // TODO: implement this 
         }
     
 
         //event handlers and ui stuff
-
-        private void button1_Click(object sender, EventArgs e) //button for broesing
+        /// <summary>
+        /// handles the click event for the button that allows user to browse for audio
+        /// </summary>
+        private void button1_Click(object sender, EventArgs e) 
         {
-            //file browsing logic, allowing the user to select audio
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Filter = "MP3 Files|*.mp3|WAV Files|*.wav|All Files|*.*";
                 openFileDialog.Title = "Select an audio file";
 
-                if (openFileDialog.ShowDialog() == DialogResult.OK) // Show the OpenFileDialog and check if the user selected a file
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string selectedFilePath = openFileDialog.FileName;
 
                     Song newSong = new Song
                     {
                         FilePath = selectedFilePath,
-                        Title = Path.GetFileNameWithoutExtension(selectedFilePath) //setting a title 
+                        Title = Path.GetFileNameWithoutExtension(selectedFilePath) 
                     };
 
                     playlist.AddSong(newSong);
                     SavePlaylist();
                     RefreshPlaylist();
-                    //musicPlayer.Play(newSong.FilePath);
                 }
             }
         }
 
-        private void button2_Click(object sender, EventArgs e) //play btn
+        /// <summary>
+        /// handles the click event for the play button
+        /// </summary>
+        private void button2_Click(object sender, EventArgs e) 
         {
             switch (musicPlayer.CurrentState)
             {
@@ -164,13 +194,14 @@ namespace music_player
                     break;
 
                 case PlaybackState.Playing:
-                    // You can decide what action to perform if a song is already playing when the play button is pressed.
                     break;
             }
         }
 
-
-        private void button3_Click(object sender, EventArgs e) //next btn
+        /// <summary>
+        /// handles the click event for the next button
+        /// </summary>
+        private void button3_Click(object sender, EventArgs e)
         {
             Song nextSong = playlist.GetNextSong();
             if (nextSong != null)
@@ -178,10 +209,12 @@ namespace music_player
                 currentFilePath = nextSong.FilePath;
                 musicPlayer.Play(nextSong.FilePath);
             }
-
         }
 
-        private void button4_Click(object sender, EventArgs e) //previous btn
+        /// <summary>
+        /// handles the click event for the previous button
+        /// </summary>
+        private void button4_Click(object sender, EventArgs e) 
         {
             Song prevSong = playlist.GetPreviousSong();
             if (prevSong != null)
@@ -191,21 +224,34 @@ namespace music_player
             }
         }
 
-        private void button5_Click(object sender, EventArgs e) //stop btn
+        /// <summary>
+        /// handles the click event for the stop button
+        /// </summary>
+        private void button5_Click(object sender, EventArgs e)
         {
             musicPlayer.Stop();
         }
 
-        private void button6_Click(object sender, EventArgs e) //pause btn
+        /// <summary>
+        /// handles the click event for the pause button
+        /// </summary>
+        private void button6_Click(object sender, EventArgs e)
         {
             musicPlayer.Pause();
         }
-        /*this method is triggered when form loads */
+
+        /// <summary>
+        /// executed when the form is loaded
+        /// </summary>
         private void Form1_Load(object sender, EventArgs e)
         {
             
         }
 
+
+        /// <summary>
+        /// handles event when a song is selected from playlist (listBox)
+        /// </summary>
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = playlist1.SelectedIndex;
@@ -231,14 +277,14 @@ namespace music_player
                     return;
                 }
 
-                // Check #2: Ensure musicPlayer has been initialized
+                // Ensure musicPlayer has been initialized
                 if (musicPlayer == null)
                 {
                     MessageBox.Show("Music player is not initialized!");
                     return;
                 }
 
-                // Check #3: Ensure selectedSong's FilePath is not null or empty
+                // Ensure selectedSong's FilePath is not null or empty
                 if (string.IsNullOrEmpty(selectedSong.FilePath))
                 {
                     MessageBox.Show("Selected song's file path is invalid!");
@@ -250,6 +296,9 @@ namespace music_player
             }
         }
 
+        /// <summary>
+        /// handles the scrolling event of trackBar that seeks through song
+        /// </summary>
         private void trackBar2_Scroll(object sender, EventArgs e)
         {
             if (musicPlayer.CurrentState == PlaybackState.Playing || musicPlayer.CurrentState == PlaybackState.Paused)
@@ -259,6 +308,11 @@ namespace music_player
             }
         }
 
+        /// <summary>
+        /// next two methods are a placeholders 
+        /// </summary>
+        /// 
+        /////////////TODO//////////////////////////////////
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -269,6 +323,9 @@ namespace music_player
 
         }
 
+        /// <summary>
+        /// timer tick event to update the UI elements related to the songs playback status
+        /// </summary>
         private void updateTimer_Tick(object sender, EventArgs e)
         {
             if (musicPlayer.CurrentState == PlaybackState.Playing)
@@ -283,15 +340,21 @@ namespace music_player
             }
         }
 
+
+        /// <summary>
+        /// handles the custom event to update the trackBar based on the playback status
+        /// </summary>
         private void HandleTrackBarUpdate(object sender, TrackBarUpdateEventArgs e)
         {
             trackBar.Maximum = e.Maximum;
             trackBar.Value = e.Value;
         }
 
-        /* this method is an event handler for SongStartedEvent of MusicPlayer class
-         this method is called when SongStartedEvent is raised*/
-        /* updating the artist - song label and initializing the timer bar */
+
+        /// <summary>
+        /// handles the logic when <see cref="MusicPlayer.SongStartedEvent)"/> is triggered
+        /// initializes the timer and updates the artist-song label
+        /// </summary>
         private void MusicPlayer_SongStarted(object sender, EventArgs e)
         {
             InitializeTimer();
@@ -303,6 +366,10 @@ namespace music_player
             }
         }
 
+        /// <summary>
+        /// handles the event when the song stops playing
+        /// stops the timer responsibly for the song progression updates
+        /// </summary>
         private void MusicPlayer_SongStopped(object sender, EventArgs e)
         {
             StopTimer();
@@ -313,6 +380,9 @@ namespace music_player
 
         }
 
+        /// <summary>
+        /// handles the logic for removing a selcted song from the playlist
+        /// </summary>
         private void buttonRemove_Click_1(object sender, EventArgs e)
         {
 
@@ -341,11 +411,18 @@ namespace music_player
                 
             }
         }
+
+        /// <summary>
+        /// plays the next song when the current song is removed
+        /// </summary>
         private void Playlist_CurrentSongRemoved(object sender, EventArgs e)
         { 
             musicPlayer.Play();
         }
 
+        /// <summary>
+        /// handles the double-click event on a song in the playlist that allow song detail editing
+        /// </summary>
         private void playlist1_DoubleClick(object sender, EventArgs e)
         {
             if (playlist1.SelectedIndex >= 0)
@@ -364,6 +441,9 @@ namespace music_player
             }
         }
 
+        /// <summary>
+        /// cancel the visibility of the UI elements for song detail elements
+        /// </summary>
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             txtArtist.Visible = false;
@@ -374,6 +454,9 @@ namespace music_player
             labelTitle.Visible = false;
         }
 
+        /// <summary>
+        /// handles the save button click event when editing song details 
+        /// </summary>
         private void buttonSave_Click(object sender, EventArgs e)
         {
             if (playlist1.SelectedIndex >= 0)
@@ -382,7 +465,7 @@ namespace music_player
                 selectedSong.Artist = txtArtist.Text;
                 selectedSong.Title = txtTitle.Text;
 
-                Song currentSong = playlist.GetCurrentSong();  // Assuming this method fetches the current song being played.
+                Song currentSong = playlist.GetCurrentSong();  
 
                 if (currentSong != null && currentSong == selectedSong)
                 {
@@ -401,6 +484,12 @@ namespace music_player
             }
         }
 
+
+        /// <summary>
+        /// filters the songs based on a query, mathcing against song title and artist 
+        /// </summary>
+        /// <param name="query">the string for filtering songs</param>
+        /// <returns> list of songs that match the query</returns>
         private List<Song> FilteredSongs (string query)
         {
             if (string.IsNullOrWhiteSpace(query))
@@ -413,9 +502,11 @@ namespace music_player
             ).ToList();
         }
 
+        /// <summary>
+        /// handles the button search click event and refreshing the playslist, matching whats in the search bar
+        /// </summary>
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Button clicked!");
             RefreshPlaylist(txtSearch.Text);
         }
 
@@ -430,20 +521,29 @@ namespace music_player
         }
     }
 
-    public class Song //class representing songs
+
+    /// <summary>
+    /// represents a song wiht properties like artist, title and file path
+    /// </summary>
+    public class Song
     {
         public string Artist { get; set; }
         public string Title { get; set; }
-        public string Genre { get; set; }
         public string FilePath { get; set; }
-        public byte[] Artwork { get; set; }
 
+
+        /// <summary>
+        /// returns the string representation of the song in the format "Artist - Title"
+        /// </summary>
         public override string ToString()
         {
             return $"{Artist} - {Title}";
         }
     }
 
+    /// <summary>
+    /// represents a collection of songs and provides functionality to manage and navigate through them
+    /// </summary>
     public class Playlist
     {
         public event EventHandler SongStoppedEvent;
@@ -452,6 +552,11 @@ namespace music_player
         public List<Song> Songs { get; } = new List<Song>();
         public int CurrentSongIndex = -1; // deafault to -1 if no song is selected
 
+
+        /// <summary>
+        /// returns the current song from playlist
+        /// if no song is selected returns null
+        /// </summary>
         public Song GetCurrentSong()
         {
             if (CurrentSongIndex >= 0 && CurrentSongIndex < Songs.Count)
@@ -461,6 +566,10 @@ namespace music_player
             return null;
         }
 
+
+        /// <summary>
+        /// moves to the next song in the playlist and returns it 
+        /// </summary>
         public Song GetNextSong()
         {
             if (CurrentSongIndex + 1 < Songs.Count)
@@ -474,6 +583,9 @@ namespace music_player
             return GetCurrentSong();
         }
 
+        /// <summary>
+        /// moves to the previous song in the playlist and returns it
+        /// </summary>
         public Song GetPreviousSong()
         {
             if (CurrentSongIndex - 1 >= 0)
@@ -487,12 +599,18 @@ namespace music_player
             return GetCurrentSong();
         }
 
+        /// <summary>
+        /// adds song to playlist
+        /// </summary>
         public void AddSong(Song song)
         {
             Songs.Add(song);
             CurrentSongIndex = Songs.Count - 1;
         }
 
+        /// <summary>
+        /// removes a song at the specified index
+        /// </summary>
         public void RemoveSongAt(int index)
         {
             bool isCurrentSong = (index == CurrentSongIndex);
@@ -510,21 +628,31 @@ namespace music_player
                CurrentSongRemoved?.Invoke(this, EventArgs.Empty); ///or play next song, that would be better probably ??????
             }
         }
-
     }
 
+    /// <summary>
+    /// represents a music artist and their collection of songs
+    /// </summary>
     public class Artist
     {
         public string Name { get; set; }
         private List<Song> songs = new List<Song>();
         public List<Song> Songs { get { return songs; } }
 
+
+        /// <summary>
+        /// adds song to the artists collection
+        /// </summary>
+        /// <param name="newSong"></param>
         public void AddSong(Song newSong)
         {
             songs.Add(newSong);
         }
     }
 
+    /// <summary>
+    /// event arguments for updating a track bar with music playback progress
+    /// </summary>
     public class TrackBarUpdateEventArgs : EventArgs
     {
         public int Maximum { get; set; }
@@ -533,6 +661,10 @@ namespace music_player
 
     public delegate void TrackBarUpdateHandler(object sender, TrackBarUpdateEventArgs e);
 
+
+    /// <summary>
+    /// represents the main music player and provides functionality to play, stop and manage music playback
+    /// </summary>
     public class MusicPlayer
     {
         public event TrackBarUpdateHandler TrackBarUpdateEvent;
@@ -543,7 +675,11 @@ namespace music_player
         private IWavePlayer waveOutDevice; // Represents the device used for audio playback.
         private AudioFileReader audioFileReader; //Used to read the audio file specified by its path.
         private Playlist playlist;
-
+        
+        /// <summary>
+        /// initializes a new instance of the MusicPlayer class
+        /// </summary>
+        /// <param name="playlist"> playlist that is used by the music player </param>
         public MusicPlayer(Playlist playlist)
         {
             this.playlist = playlist;
@@ -551,6 +687,10 @@ namespace music_player
             waveOutDevice.PlaybackStopped += WaveOutDevice_PlaybackStopped;
         }
 
+
+        /// <summary>
+        /// event handler for when playback stops in the WaveOutDevice
+        /// </summary>
         private void WaveOutDevice_PlaybackStopped(object sender, StoppedEventArgs e)
         {
             if (CurrentState == PlaybackState.Playing)
@@ -562,8 +702,16 @@ namespace music_player
                 }
             }
         }
+
+        /// <summary>
+        /// current playback state of the music player
+        /// </summary>
         public PlaybackState CurrentState { get; private set; } = PlaybackState.Stopped;  //the logic of music playing goes here
 
+
+        /// <summary>
+        /// starts or resumes playback of the current song in the playlist
+        /// </summary>
         public void Play()  //method to play from playlist
         {
             if (CurrentState == PlaybackState.Paused)
@@ -583,6 +731,10 @@ namespace music_player
             ///// UpdateButtonsStates();
         }
 
+        /// <summary>
+        /// plays the song specified by the file path
+        /// </summary>
+        /// <param name="filePath"> path to the audio file</param>
         public void Play(string filePath)  //method to play specific file
         {
             if (string.IsNullOrEmpty(filePath))
@@ -612,7 +764,7 @@ namespace music_player
                 {
                     Maximum = (int)audioFileReader.TotalTime.TotalSeconds,
                     Value = 0
-                }); //this raises the event
+                }); 
             }
             catch (Exception ex)
             {
@@ -624,6 +776,9 @@ namespace music_player
             }
         }
 
+        /// <summary>
+        /// stops the current music playback and releases resources 
+        /// </summary>
         public void Stop()
         {
             waveOutDevice?.Stop();
@@ -643,6 +798,9 @@ namespace music_player
             RequestStopTimer?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// pauses the current playback
+        /// </summary>
         public void Pause()
         {
             if (CurrentState == PlaybackState.Playing)
@@ -652,15 +810,10 @@ namespace music_player
             }
         }
 
-        public void Skip()
-        {
-
-        }
-
-        public void GoBack()
-        {
-
-        }
+        /// <summary>
+        /// adjusts the current playback position to the specified seconds
+        /// </summary>
+        /// <param name="seconds"> the position to seek to in seconds </param>
         public void Seek(int seconds)
         {
             if (audioFileReader != null)
@@ -669,6 +822,9 @@ namespace music_player
             }
         }
 
+        /// <summary>
+        /// handles the event when playback is stopped
+        /// </summary>
         private void OnPlaybackStopped(object sender, StoppedEventArgs e)
         {
             var nextSong = playlist.GetNextSong();
@@ -687,6 +843,9 @@ namespace music_player
             }
         }
 
+        /// <summary>
+        /// returns the total duration of the currently loaded song
+        /// </summary>
         public TimeSpan TotalTime
         {
             get
@@ -695,6 +854,10 @@ namespace music_player
             }
         }
 
+
+        /// <summary>
+        /// returns the current playback time of the song
+        /// </summary>
         public TimeSpan CurrentTime
         {
             get
