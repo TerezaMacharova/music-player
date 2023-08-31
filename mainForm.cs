@@ -49,7 +49,7 @@ namespace music_player
         }
 
          /// <summary>
-         /// loads the playslist from a JSON file, if it exist
+         /// loads the playlist from a JSON file, if it exist
          /// </summary>
         private void LoadPlaylist()
         {
@@ -88,7 +88,6 @@ namespace music_player
                 updateTimer.Interval = 1000;
                 updateTimer.Tick += updateTimer_Tick;
             }
-
             updateTimer.Start();
         }
 
@@ -130,7 +129,6 @@ namespace music_player
 
         }
 
-        //event handlers and ui stuff
         /// <summary>
         /// handles the click event for the button that allows user to browse for audio
         /// </summary>
@@ -233,15 +231,6 @@ namespace music_player
         }
 
         /// <summary>
-        /// executed when the form is loaded
-        /// </summary>
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-        }
-
-
-        /// <summary>
         /// handles event when a song is selected from playlist (listBox)
         /// </summary>
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -269,22 +258,18 @@ namespace music_player
                     return;
                 }
 
-                // Ensure musicPlayer has been initialized
                 if (musicPlayer == null)
                 {
                     MessageBox.Show("Music player is not initialized!");
                     return;
                 }
 
-                // Ensure selectedSong's FilePath is not null or empty
                 if (string.IsNullOrEmpty(selectedSong.FilePath))
                 {
                     MessageBox.Show("Selected song's file path is invalid!");
                     return;
                 }
-
                 musicPlayer.Play(selectedSong.FilePath);
-
             }
         }
 
@@ -301,17 +286,6 @@ namespace music_player
         }
 
         /// <summary>
-        /// next two methods are a placeholders 
-        /// </summary>
-        /// 
-        
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        /// <summary>
         /// timer tick event to update the UI elements related to the songs playback status
         /// </summary>
         private void updateTimer_Tick(object sender, EventArgs e)
@@ -323,8 +297,7 @@ namespace music_player
 
                 labelElapsedTime.Text = currentTime.ToString(@"mm\:ss");
                 labelTotalTime.Text = totalTime.ToString(@"mm\:ss");
-                trackBar.Value = (int)currentTime.TotalSeconds; // totalTime.TotalSeconds) * trackBar.Maximum);
-
+                trackBar.Value = (int)currentTime.TotalSeconds;
             }
         }
 
@@ -363,17 +336,11 @@ namespace music_player
             StopTimer();
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
         /// <summary>
-        /// handles the logic for removing a selcted song from the playlist
+        /// handles the logic for removing a selected song from the playlist
         /// </summary>
         private void buttonRemove_Click_1(object sender, EventArgs e)
         {
-
             int selectedIndex = playlist1.SelectedIndex;
             if (selectedIndex >= 0 && selectedIndex < playlist.Songs.Count)
             {
@@ -393,10 +360,8 @@ namespace music_player
                     musicPlayer.Stop();
                     playlist.CurrentSongIndex = 0;
                 }
-
                 SavePlaylist();
                 RefreshPlaylist();
-                
             }
         }
 
@@ -474,7 +439,7 @@ namespace music_player
 
 
         /// <summary>
-        /// filters the songs based on a query, mathcing against song title and artist 
+        /// filters the songs based on a query, matching against song title and artist 
         /// </summary>
         /// <param name="query">the string for filtering songs</param>
         /// <returns> list of songs that match the query</returns>
@@ -491,24 +456,13 @@ namespace music_player
         }
 
         /// <summary>
-        /// handles the button search click event and refreshing the playslist, matching whats in the search bar
+        /// handles the button search click event and refreshing the playlist, matching whats in the search bar
         /// </summary>
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             RefreshPlaylist(txtSearch.Text);
         }
-
-        private void txtArtist_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelTitle_Click(object sender, EventArgs e)
-        {
-
-        }
     }
-
 
     /// <summary>
     /// represents a song with properties like artist, title and file path
@@ -538,7 +492,7 @@ namespace music_player
         public event EventHandler CurrentSongRemoved;
 
         public List<Song> Songs { get; } = new List<Song>();
-        public int CurrentSongIndex = -1; // deafault to -1 if no song is selected
+        public int CurrentSongIndex = -1; // default to -1 if no song is selected
 
 
         /// <summary>
@@ -611,9 +565,10 @@ namespace music_player
                     CurrentSongIndex--;
                 }
             }
+
             if (isCurrentSong)
             {
-               CurrentSongRemoved?.Invoke(this, EventArgs.Empty); ///or play next song, that would be better probably ??????
+               CurrentSongRemoved?.Invoke(this, EventArgs.Empty); 
             }
         }
     }
@@ -626,16 +581,6 @@ namespace music_player
         public string Name { get; set; }
         private List<Song> songs = new List<Song>();
         public List<Song> Songs { get { return songs; } }
-
-
-        /// <summary>
-        /// adds song to the artists collection
-        /// </summary>
-        /// <param name="newSong"></param>
-        public void AddSong(Song newSong)
-        {
-            songs.Add(newSong);
-        }
     }
 
     /// <summary>
@@ -648,7 +593,6 @@ namespace music_player
     }
 
     public delegate void TrackBarUpdateHandler(object sender, TrackBarUpdateEventArgs e);
-
 
     /// <summary>
     /// represents the main music player and provides functionality to play, stop and manage music playback
@@ -716,7 +660,6 @@ namespace music_player
                     Play(currentSong.FilePath);
                 }
             }
-            ///// UpdateButtonsStates();
         }
 
         /// <summary>

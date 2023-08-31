@@ -153,7 +153,6 @@
             this.labelElapsedTime.Size = new System.Drawing.Size(50, 21);
             this.labelElapsedTime.TabIndex = 10;
             this.labelElapsedTime.Text = "00:00";
-            this.labelElapsedTime.Click += new System.EventHandler(this.label1_Click);
             // 
             // labelTotalTime
             // 
@@ -174,7 +173,6 @@
             this.LabelArtistSong.Size = new System.Drawing.Size(157, 33);
             this.LabelArtistSong.TabIndex = 12;
             this.LabelArtistSong.Text = "artist - song";
-            this.LabelArtistSong.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // buttonRemove
             // 
@@ -193,7 +191,6 @@
             this.txtArtist.Name = "txtArtist";
             this.txtArtist.Size = new System.Drawing.Size(214, 22);
             this.txtArtist.TabIndex = 14;
-            this.txtArtist.TextChanged += new System.EventHandler(this.txtArtist_TextChanged);
             // 
             // txtTitle
             // 
@@ -260,7 +257,6 @@
             this.labelTitle.Size = new System.Drawing.Size(43, 20);
             this.labelTitle.TabIndex = 21;
             this.labelTitle.Text = "Title";
-            this.labelTitle.Click += new System.EventHandler(this.labelTitle_Click);
             // 
             // MainForm
             // 
@@ -291,8 +287,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "lalala this plays music";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "Music Player";
             ((System.ComponentModel.ISupportInitialize)(this.trackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
