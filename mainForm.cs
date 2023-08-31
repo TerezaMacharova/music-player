@@ -62,6 +62,7 @@ namespace music_player
             }
         }
 
+
         /// <summary>
         /// refreshes the playlist in the UI, can be filtered by query
         /// </summary>
@@ -71,6 +72,7 @@ namespace music_player
             var filteredSongs = FilteredSongs(query);
             foreach (var song in filteredSongs)
             {
+                
                 playlist1.Items.Add(song);
             }
         }
@@ -103,8 +105,7 @@ namespace music_player
         public MainForm()
         {
             InitializeComponent();
-            StartPosition = FormStartPosition.CenterScreen; //ensures that the form starts in the middle
-            CenterContent();
+            StartPosition = FormStartPosition.CenterScreen;
             playlist = new Playlist();
             LoadPlaylist(); 
             musicPlayer = new MusicPlayer(playlist);
@@ -128,15 +129,6 @@ namespace music_player
             buttonSearch.Click += buttonSearch_Click;
 
         }
-
-        /// <summary>
-        /// centers the content on the form 
-        /// </summary>
-        private void CenterContent()
-        {
-            // TODO: implement this 
-        }
-    
 
         //event handlers and ui stuff
         /// <summary>
@@ -312,11 +304,7 @@ namespace music_player
         /// next two methods are a placeholders 
         /// </summary>
         /// 
-        /////////////TODO//////////////////////////////////
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -523,7 +511,7 @@ namespace music_player
 
 
     /// <summary>
-    /// represents a song wiht properties like artist, title and file path
+    /// represents a song with properties like artist, title and file path
     /// </summary>
     public class Song
     {

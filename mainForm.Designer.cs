@@ -164,7 +164,6 @@
             this.labelTotalTime.Size = new System.Drawing.Size(50, 21);
             this.labelTotalTime.TabIndex = 11;
             this.labelTotalTime.Text = "00:00";
-            this.labelTotalTime.Click += new System.EventHandler(this.label2_Click);
             // 
             // LabelArtistSong
             // 
@@ -289,6 +288,7 @@
             this.Controls.Add(this.buttonNext);
             this.Controls.Add(this.buttonPlay);
             this.Controls.Add(this.buttonBrowse);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "lalala this plays music";
