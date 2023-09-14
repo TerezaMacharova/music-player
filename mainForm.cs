@@ -237,19 +237,20 @@ namespace music_player
         {
             int selectedIndex = playlist1.SelectedIndex;
 
-            if (playlist1.SelectedItem == null)
+            if (selectedIndex == -1 || playlist == null || musicPlayer == null)
             {
                 return;
             }
 
-            if (playlist == null)
-            {
-                return;
-            }
+            //Song selectedSongFromList = (Song)playlist1.SelectedItem;
 
-            if (selectedIndex >= 0)
-            {
-                playlist.CurrentSongIndex = selectedIndex;
+            //int songIndexInMainPlaylist = playlist.Songs.IndexOf(selectedSongFromList);
+
+            //if (songIndexInMainPlaylist >= 0)
+            //{
+            //    playlist.CurrentSongIndex = songIndexInMainPlaylist;
+
+                playlist.SelectSongFromDisplayed(selectedIndex);
                 Song selectedSong = playlist.GetCurrentSong();
 
                 if (selectedSong == null)
@@ -270,7 +271,7 @@ namespace music_player
                     return;
                 }
                 musicPlayer.Play(selectedSong.FilePath);
-            }
+            
         }
 
         /// <summary>
@@ -339,6 +340,8 @@ namespace music_player
         /// <summary>
         /// handles the logic for removing a selected song from the playlist
         /// </summary>
+        /// 
+        ///TODO: change this a little
         private void buttonRemove_Click_1(object sender, EventArgs e)
         {
             int selectedIndex = playlist1.SelectedIndex;
@@ -446,13 +449,19 @@ namespace music_player
         private List<Song> FilteredSongs (string query)
         {
             if (string.IsNullOrWhiteSpace(query))
+            {
+                playlist.DisplayedSongs = playlist.Songs;
                 return playlist.Songs;
+            }
 
-            return playlist.Songs.Where(s => 
+            var filteredSongs = playlist.Songs.Where(s => 
                 (s.Title != null && s.Title.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0 )
                 || 
                 (s.Artist!= null && s.Artist.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0)
             ).ToList();
+
+            playlist.DisplayedSongs = filteredSongs;
+            return filteredSongs;
         }
 
         /// <summary>
@@ -492,7 +501,25 @@ namespace music_player
         public event EventHandler CurrentSongRemoved;
 
         public List<Song> Songs { get; } = new List<Song>();
+        public List<Song> DisplayedSongs { get; set; } = new List<Song>();
         public int CurrentSongIndex = -1; // default to -1 if no song is selected
+
+        public void SetCurrentSong(int index)
+        {
+            if (index >= 0 && index < DisplayedSongs.Count)
+            {
+                CurrentSongIndex = index;
+            }
+        }
+
+        public void SelectSongFromDisplayed(int index)
+        {
+            if (index >= 0 && index < DisplayedSongs.Count)
+            {
+                var selectedSong = DisplayedSongs[index];
+                CurrentSongIndex = Songs.IndexOf(selectedSong);  // Find the song's index in the original list
+            }
+        }
 
 
         /// <summary>
@@ -501,13 +528,23 @@ namespace music_player
         /// </summary>
         public Song GetCurrentSong()
         {
+            if (DisplayedSongs.Count > 0)
+            {
+                if (CurrentSongIndex >= 0 && CurrentSongIndex < Songs.Count)
+                {
+                    return Songs[CurrentSongIndex];
+                }
+
+                return null;
+            }
+
             if (CurrentSongIndex >= 0 && CurrentSongIndex < Songs.Count)
             {
                 return Songs[CurrentSongIndex];
             }
             return null;
-        }
 
+        }
 
         /// <summary>
         /// moves to the next song in the playlist and returns it 
@@ -556,9 +593,13 @@ namespace music_player
         public void RemoveSongAt(int index)
         {
             bool isCurrentSong = (index == CurrentSongIndex);
+
             if (index >= 0 && index < Songs.Count)
             {
+                var songToRemove = Songs[index];
+
                 Songs.RemoveAt(index);
+                DisplayedSongs.Remove(songToRemove);
 
                 if (index <= CurrentSongIndex)
                 {
