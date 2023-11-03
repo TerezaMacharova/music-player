@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,13 +18,14 @@ namespace music_player
         Paused
     }
 
+
     /// <summary>
     /// the main form for the applications UI
     /// </summary>
     public partial class MainForm : Form 
     {
         /// <summary>
-        /// contains informations about song 
+        /// contains information about song 
         /// </summary>
         private struct SongInfo  
         {
@@ -241,27 +242,18 @@ namespace music_player
             {
                 return;
             }
-
-            //Song selectedSongFromList = (Song)playlist1.SelectedItem;
-
-            //int songIndexInMainPlaylist = playlist.Songs.IndexOf(selectedSongFromList);
-
-            //if (songIndexInMainPlaylist >= 0)
-            //{
-            //    playlist.CurrentSongIndex = songIndexInMainPlaylist;
-
                 playlist.SelectSongFromDisplayed(selectedIndex);
                 Song selectedSong = playlist.GetCurrentSong();
 
                 if (selectedSong == null)
                 {
-                    MessageBox.Show("Selected song is null!");
+                    MessageBox.Show("Couldn`t find the song you selected!");
                     return;
                 }
 
                 if (musicPlayer == null)
                 {
-                    MessageBox.Show("Music player is not initialized!");
+                    MessageBox.Show("Music player is not initialized, try again");
                     return;
                 }
 
@@ -271,7 +263,6 @@ namespace music_player
                     return;
                 }
                 musicPlayer.Play(selectedSong.FilePath);
-            
         }
 
         /// <summary>
@@ -517,7 +508,7 @@ namespace music_player
             if (index >= 0 && index < DisplayedSongs.Count)
             {
                 var selectedSong = DisplayedSongs[index];
-                CurrentSongIndex = Songs.IndexOf(selectedSong);  // Find the song's index in the original list
+                CurrentSongIndex = Songs.IndexOf(selectedSong);  
             }
         }
 
